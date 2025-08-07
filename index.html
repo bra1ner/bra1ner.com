@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRA1NER | DeGods</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white/60 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
+    <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
+
+    <div>
+      <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
+      <p class="text-gray-600" id="tagline">DeGods</p>
+    </div>
+
+    <div class="space-y-4" id="links">
+      <!-- Links will be inserted here by JavaScript -->
+    </div>
+  </div>
+
+  <script>
+  const profile = {
+    username: "BRA1NER",
+    tagline: "DeGods on TOP",
+    links: [
+      { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-purple-500", icon: "images/degods.png" },
+      { name: " (Twitter)", url: "https://x.com/bra1ner_com", color: "bg-gray-700", icon: "images/twitter.png" },
+      { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000]", icon: "images/instagram.png" }
+    ]
+  };
+
+  document.getElementById("username").innerText = profile.username;
+  document.getElementById("tagline").innerText = profile.tagline;
+
+  const container = document.getElementById("links");
+  profile.links.forEach(link => {
+    const a = document.createElement("a");
+    a.href = link.url;
+    a.target = "_blank";
+    a.className = `flex items-center justify-center gap-2 ${link.color} text-white px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
+
+    // ✅ Corrected line to render PNG icons
+    a.innerHTML = `<img src="${link.icon}" alt="" class="w-5 h-5 inline-block" /> ${link.name}`;
+
+    container.appendChild(a);
+  });
+</script>
+
+</body>
+</html>
