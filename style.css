@@ -1,0 +1,14 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* fallback for loading */
+  min-height: 100%;
+}
+
+body {
+  background-image: url('images/years.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* stays fixed when scrolling */
+  background-repeat: no-repeat;
+}
