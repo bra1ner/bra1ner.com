@@ -4,11 +4,33 @@
   <link rel="icon" href="images/favicon.png" type="image/png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- Mobile browser + Safari top bar color -->
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <title>BRA1NER</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Background image + fallback color -->
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: black; /* fallback for loading */
+      min-height: 100%;
+    }
+    body {
+      background-image: url('images/years.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* stays fixed when scrolling */
+      background-repeat: no-repeat;
+    }
+  </style>
 </head>
-<body class="bg-cover bg-center min-h-screen flex items-center justify-center" 
-      style="background-image: url('images/years.png');">
+<body class="min-h-screen flex items-center justify-center">
 
   <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
     <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
@@ -24,35 +46,35 @@
   </div>
 
   <script>
-  const profile = {
-    username: "BRA1NER",
-    tagline: "DeGods member",
-    links: [
-      { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-[#000000]", icon: "images/degods.png" },
-      { name: " (Twitter)", url: "https://x.com/bra1ner_com", color: "bg-[#000000]", icon: "images/twitter.png" },
-      { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000]", icon: "images/instagram.png" }
-    ]
-  };
+    const profile = {
+      username: "BRA1NER",
+      tagline: "DeGods member",
+      links: [
+        { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-[#000000]", icon: "images/degods.png" },
+        { name: " (Twitter)", url: "https://x.com/bra1ner_com", color: "bg-[#000000]", icon: "images/twitter.png" },
+        { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000]", icon: "images/instagram.png" }
+      ]
+    };
 
-  document.getElementById("username").innerText = profile.username;
-  document.getElementById("tagline").innerText = profile.tagline;
+    document.getElementById("username").innerText = profile.username;
+    document.getElementById("tagline").innerText = profile.tagline;
 
-  const container = document.getElementById("links");
-  profile.links.forEach(link => {
-  const a = document.createElement("a");
-  a.href = link.url;
-  a.target = "_blank";
-  a.className = `relative flex items-center justify-center ${link.color} text-white px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
+    const container = document.getElementById("links");
+    profile.links.forEach(link => {
+      const a = document.createElement("a");
+      a.href = link.url;
+      a.target = "_blank";
+      a.className = `relative flex items-center justify-center ${link.color} text-white px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
 
-  // Icon on the left (absolutely positioned), text in center
-  a.innerHTML = `
-    <img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" />
-    <span>${link.name}</span>
-  `;
+      // Icon on the left (absolute), text centered
+      a.innerHTML = `
+        <img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" />
+        <span>${link.name}</span>
+      `;
 
-  container.appendChild(a);
-});
-</script>
+      container.appendChild(a);
+    });
+  </script>
 
 </body>
 </html>
