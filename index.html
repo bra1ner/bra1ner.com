@@ -39,16 +39,19 @@
 
   const container = document.getElementById("links");
   profile.links.forEach(link => {
-    const a = document.createElement("a");
-    a.href = link.url;
-    a.target = "_blank";
-    a.className = `flex items-center justify-center gap-2 ${link.color} text-white px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
+  const a = document.createElement("a");
+  a.href = link.url;
+  a.target = "_blank";
+  a.className = `relative flex items-center justify-center ${link.color} text-white px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
 
-    // ✅ Corrected line to render PNG icons
-    a.innerHTML = `<img src="${link.icon}" alt="" class="w-5 h-5 inline-block" /> ${link.name}`;
+  // Icon on the left (absolutely positioned), text in center
+  a.innerHTML = `
+    <img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" />
+    <span>${link.name}</span>
+  `;
 
-    container.appendChild(a);
-  });
+  container.appendChild(a);
+});
 </script>
 
 </body>
