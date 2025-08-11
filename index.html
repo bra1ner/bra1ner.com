@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="images/favicon.png" type="image/png">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BRA1NER | DeGods</title>
 
-  <!-- Mobile browser + Safari top bar color -->
-  <meta name="theme-color" content="#000000" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!-- Preload tiny blurred placeholder so it shows immediately -->
+  <link rel="preload" as="image" href="images/years-small.webp">
+  <!-- Preload preferred large format (browser may pick it) -->
+  <link rel="preload" as="image" href="images/years.avif">
 
-  <title>BRA1NER</title>
+  <!-- Tailwind (CDN for convenience) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google tag (gtag.js) -->
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Analytics (kept as you had it) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ9ZRC3PW3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -21,66 +24,50 @@
     gtag('js', new Date());
     gtag('config', 'G-RJ9ZRC3PW3');
   </script>
-
-  <!-- Preload background image -->
-  <link rel="preload" as="image" href="images/years.webp">
-  <link rel="preload" as="image" href="images/years.png">
-
-  <!-- External CSS -->
-  <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex items-center justify-center">
+<body class="min-h-screen flex items-center justify-center p-4">
 
-  <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
-    <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
+  <!-- Fullscreen background image element (positioned behind content) -->
+  <!-- We use <picture> for AVIF/WebP/PNG fallbacks and lazy load it via JS -->
+  <div id="bg-wrapper" aria-hidden="true">
+    <picture id="bg-picture">
+      <source type="image/avif" data-srcset="images/years.avif">
+      <source type="image/webp" data-srcset="images/years.webp">
+      <!-- fallback PNG -->
+      <img id="bg-img"
+           class="bg-img lazy"
+           src="images/years-small.webp"               <!-- tiny placeholder -->
+           data-src="images/years.webp"               <!-- full-size webp as primary -->
+           data-srcset="images/years-small.webp 480w, images/years-medium.webp 1024w, images/years.webp 1920w"
+           alt="" />
+    </picture>
+    <noscript>
+      <!-- fallback for users with JS disabled -->
+      <picture>
+        <source type="image/avif" srcset="images/years.avif">
+        <source type="image/webp" srcset="images/years.webp">
+        <img src="images/years.png" alt="">
+      </picture>
+    </noscript>
+  </div>
+
+  <!-- Profile card -->
+  <div
+    class="profile-card bg-white/20 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-3xl shadow-xl w-11/12 sm:w-96 md:w-[28rem] text-center space-y-6">
+    <img src="images/profile.jpg" loading="lazy" alt="Profile Picture"
+         class="w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full shadow-lg object-cover" />
 
     <div>
-      <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
-      <p class="text-gray-600" id="tagline">DeGods</p>
+      <h1 id="username" class="text-white text-2xl sm:text-3xl font-bold tracking-wide">BRA1NER</h1>
+      <p id="tagline" class="text-gray-200 text-sm sm:text-base">DeGods member</p>
     </div>
 
-    <div class="space-y-4" id="links">
-      <!-- Links will be inserted here by JavaScript -->
+    <div id="links" class="flex flex-col sm:flex-col md:flex-col gap-4 items-center">
+      <!-- Buttons populated by JS -->
     </div>
   </div>
 
-  <script>
-    const profile = {
-      username: "BRA1NER",
-      tagline: "DeGods member",
-      links: [
-        { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-[#000000]", icon: "images/degods.png" },
-        { name: " (Twitter)", url: "https://x.com/bra1ner_com", color: "bg-[#000000]", icon: "images/twitter.png" },
-        { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000]", icon: "images/instagram.png" },
-        { name: "TikTok", url: "https://www.tiktok.com/@bra1ner.com", color: "bg-[#000000]", icon: "images/tik.png" }
-      ]
-    };
-
-    document.getElementById("username").innerText = profile.username;
-    document.getElementById("tagline").innerText = profile.tagline;
-
-    const container = document.getElementById("links");
-    profile.links.forEach(link => {
-      const a = document.createElement("a");
-      a.href = link.url;
-      a.target = "_blank";
-      a.className = `relative flex items-center justify-center ${link.color} text-white px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
-
-      a.innerHTML = `
-        <img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" />
-        <span>${link.name}</span>
-      `;
-
-      container.appendChild(a);
-    });
-  </script>
-
-  <script>
-  const img = new Image();
-  img.src = "images/years.webp";
-  img.onload = () => document.body.classList.add("loaded");
-  </script>
-
-
+  <!-- Scripts -->
+  <script src="script.js" defer></script>
 </body>
 </html>
