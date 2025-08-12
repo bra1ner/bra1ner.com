@@ -21,3 +21,31 @@ body.loaded {
   background-image: url('images/years.webp'), url('images/years.png');
   filter: blur(0);
 }
+
+/* Regular */
+@font-face {
+  font-family: 'HelveticaNeueBlack';
+  src: url('fonts/HelveticaNeueBlack.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'HelveticaNeueBlack';
+  src: url('fonts/HelveticaNeueBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Italic */
+@font-face {
+  font-family: 'HelveticaNeueBlack';
+  src: url('fonts/HelveticaNeueItalic.ttf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+body {
+  font-family: 'HelveticaNeueBlack', sans-serif;
+}
