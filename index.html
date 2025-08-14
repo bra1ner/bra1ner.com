@@ -81,11 +81,11 @@
       username: "BRA1NER",
       tagline: "DeGods member",
       links: [
-        { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-[#000000]", icon: "images/degods.png" },
-        { name: "(Twitter)", url: "https://x.com/bra1ner_com", color: "bg-[#000000]", icon: "images/twitter.png" },
-        { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000]", icon: "images/instagram.png" },
-        { name: "TikTok", url: "https://www.tiktok.com/@bra1ner.com", color: "bg-[#000000]", icon: "images/tik.png" },
-        { name: "Contact Me!", url: "#", color: "bg-[#FAF9F6]", text-[#000000], icon: "images/contact2.png" }
+        { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/degods.png" },
+        { name: "(Twitter)", url: "https://x.com/bra1ner_com", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/twitter.png" },
+        { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/instagram.png" },
+        { name: "TikTok", url: "https://www.tiktok.com/@bra1ner.com", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/tik.png" },
+        { name: "Contact Me!", url: "#", color: "bg-[#FAF9F6] text-[#000000]", icon: "images/contact2.png" }
       ]
     };
 
@@ -97,7 +97,7 @@
       const a = document.createElement("a");
       a.href = link.url;
       a.target = "_blank";
-      a.className = `relative flex items-center justify-center ${link.color} text-white px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
+      a.className = `relative flex items-center justify-center ${link.color} px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
 
       a.innerHTML = `
         <img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" />
