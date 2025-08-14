@@ -45,6 +45,37 @@
     </div>
   </div>
 
+  <!-- Contact Modal -->
+  <div id="contactModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-xl shadow-xl max-w-md w-full">
+      <h2 class="text-xl font-bold mb-4">Contact Me</h2>
+      <form id="contactForm" method="POST" action="https://formspree.io/f/xvgqygla">
+        <div class="mb-3">
+          <input type="text" name="first_name" placeholder="First Name" required
+            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="mb-3">
+          <input type="text" name="last_name" placeholder="Last Name" required
+            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="mb-3">
+          <input type="email" name="email" placeholder="Your Email" required
+            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+        <div class="mb-4">
+          <textarea name="message" placeholder="Your Message" required rows="4"
+            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button type="button" id="closeModal"
+            class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500">Cancel</button>
+          <button type="submit"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     const profile = {
       username: "BRA1NER",
@@ -53,7 +84,8 @@
         { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-[#000000]", icon: "images/degods.png" },
         { name: "(Twitter)", url: "https://x.com/bra1ner_com", color: "bg-[#000000]", icon: "images/twitter.png" },
         { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000]", icon: "images/instagram.png" },
-        { name: "TikTok", url: "https://www.tiktok.com/@bra1ner.com", color: "bg-[#000000]", icon: "images/tik.png" }
+        { name: "TikTok", url: "https://www.tiktok.com/@bra1ner.com", color: "bg-[#000000]", icon: "images/tik.png" },
+        { name: "Contact Me!", url: "#", color: "bg-red-600", icon: "images/contact.png" }
       ]
     };
 
@@ -74,14 +106,24 @@
 
       container.appendChild(a);
     });
+
+    // Modal behavior
+    document.addEventListener("click", function (e) {
+      if (e.target.closest("a")?.textContent.includes("Contact Me!")) {
+        e.preventDefault();
+        document.getElementById("contactModal").classList.remove("hidden");
+      }
+    });
+
+    document.getElementById("closeModal").addEventListener("click", function () {
+      document.getElementById("contactModal").classList.add("hidden");
+    });
   </script>
   
   <script>
-  const img = new Image();
-  img.src = "images/years.webp";
-  img.onload = () => document.body.classList.add("loaded");
+    const img = new Image();
+    img.src = "images/years.webp";
+    img.onload = () => document.body.classList.add("loaded");
   </script>
-
-
 </body>
 </html>
