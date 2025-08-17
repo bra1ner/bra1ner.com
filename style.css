@@ -14,13 +14,13 @@ html, body {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -1;
-  pointer-events: none;
+  z-index: -1;            /* behind everything */
+  pointer-events: none;   /* not clickable */
   background-color: black;
 }
 
-/* Keep content above the video */
-body > * {
+/* Keep all content above the video — EXCEPT the video itself */
+body > :not(.bg-video) {
   position: relative;
   z-index: 10;
 }
