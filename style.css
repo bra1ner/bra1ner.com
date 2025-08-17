@@ -3,25 +3,18 @@ html, body {
   padding: 0;
   min-height: 100%;
   width: 100%;
-  /* keep a fallback color but do NOT use negative z-index on video */
-  background-color: #000;
+  background-color: #000; /* fallback if video fails */
   overflow-x: hidden;
 }
 
-/* Fullscreen video element (not behind the stacking context) */
+/* Fullscreen background video */
 .bg-video {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  object-fit: cover;   /* sharp, fills the screen */
-  z-index: 0;          /* <-- IMPORTANT: not -1 */
-  pointer-events: none;
+  object-fit: cover;
+  z-index: -1;          /* behind content */
+  pointer-events: none; /* not clickable */
   background: #000;
-}
-
-/* Your content sits above the video */
-.site-content {
-  position: relative;
-  z-index: 1;
 }
