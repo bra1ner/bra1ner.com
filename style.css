@@ -10,11 +10,11 @@ html, body {
 /* Fullscreen video background */
 .bg-video {
   position: fixed;
-  inset: 0;             /* top, right, bottom, left = 0 */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;     /* makes video fill and crop nicely */
-  z-index: -1;           /* behind all content */
-  pointer-events: none;  /* unclickable */
-  background: none;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;   /* high-res fill (crops, no letterbox) */
+  z-index: -1;         /* behind all content */
+  pointer-events: none;
+  background: black;
 }
