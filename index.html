@@ -25,7 +25,7 @@
 </head>
 <body class="relative min-h-screen flex items-center justify-center">
 
-  <!-- Fullscreen background video (fixed behind content) -->
+  <!-- Fullscreen background video -->
   <video
     id="bgVideo"
     class="bg-video"
@@ -34,12 +34,11 @@
     loop
     playsinline
     preload="auto"
-    aria-hidden="true"
-    poster="videos/neck-mythic-mamba.webm"  <!-- optional still while buffering -->
   >
     <!-- WebM first -->
     <source src="videos/neck-mythic-mamba.webm" type="video/webm" />
-    <!-- MP4 fallback for older Safari/iOS (add this file when possible) -->
+    <!-- MP4 fallback if you add it later -->
+    <source src="videos/neck-mythic-mamba.mp4" type="video/mp4" />
     <!-- <source src="videos/neck-mythic-mamba.mp4" type="video/mp4" /> -->
   </video>
 
@@ -111,13 +110,11 @@
       document.getElementById("contactModal").classList.add("hidden");
     });
 
-    // Autoplay + simple diagnostics
+    // Autoplay safety
     const v = document.getElementById('bgVideo');
     if (v) {
       v.muted = true;
-      v.play().catch(err => console.warn('Video play blocked:', err));
-      v.addEventListener('loadeddata', () => console.log('Video loaded'));
-      v.addEventListener('error', () => console.error('Video error: check path/type'));
+      v.play().catch(err => console.warn('Autoplay blocked:', err));
     }
   </script>
 </body>
