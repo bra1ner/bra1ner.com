@@ -24,9 +24,9 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-dvh flex items-center justify-center relative">
+<body class="relative min-h-screen">
 
-  <!-- Background Video (keep as the FIRST child) -->
+  <!-- Background Video (fixed, not part of layout) -->
   <video
     id="bgVideo"
     class="bg-video"
@@ -35,25 +35,27 @@
     loop
     playsinline
     preload="auto"
-    aria-hidden="true"
-  >
+    aria-hidden="true">
     <source src="neck-mythic-mamba.webm" type="video/webm" />
-    <!-- Optional MP4 fallback if you add one later:
+    <!-- Optional MP4 fallback:
     <source src="neck-mythic-mamba.mp4" type="video/mp4" />
     -->
   </video>
 
-  <!-- Content Card -->
-  <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
-    <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
+  <!-- Centering container (now the flex parent) -->
+  <main class="min-h-screen flex items-center justify-center">
+    <!-- Content Card -->
+    <div class="relative z-10 bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
+      <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
 
-    <div>
-      <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
-      <p class="text-gray-600" id="tagline">DeGods</p>
+      <div>
+        <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
+        <p class="text-gray-600" id="tagline">DeGods</p>
+      </div>
+
+      <div class="space-y-4" id="links"></div>
     </div>
-
-    <div class="space-y-4" id="links"></div>
-  </div>
+  </main>
 
   <!-- Contact Modal -->
   <div id="contactModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
@@ -91,7 +93,7 @@
       username: "BRA1NER",
       tagline: "DeGods M+ Member",
       links: [
-        { name: "DeGods", url: "https://degods.com/u/brainer", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/degods.png" },
+        { name: "DeGodS", url: "https://degods.com/u/brainer", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/degods.png" },
         { name: "(Twitter)", url: "https://x.com/bra1ner_com", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/twitter.png" },
         { name: "Instagram", url: "https://instagram.com/bra1ner_com", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/instagram.png" },
         { name: "TikTok", url: "https://www.tiktok.com/@bra1ner.com", color: "bg-[#000000] text-[#FFFFFF]", icon: "images/tik.png" },
@@ -101,7 +103,6 @@
       ]
     };
 
-    // Populate content
     document.getElementById("username").innerText = profile.username;
     document.getElementById("tagline").innerText = profile.tagline;
 
@@ -129,7 +130,7 @@
       document.getElementById("contactModal").classList.add("hidden");
     });
 
-    // Ensure autoplay
+    // Ensure autoplay (some mobile browsers need this)
     const v = document.getElementById('bgVideo');
     if (v) { v.muted = true; v.play().catch(() => {}); }
   </script>
