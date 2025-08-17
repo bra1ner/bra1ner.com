@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Mobile browser + Safari top bar color -->
   <meta name="theme-color" content="#000000" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,7 +12,7 @@
   <title>BRA1NER</title>
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Google tag (gtag.js) -->
+  <!-- Google tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJ9ZRC3PW3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -22,12 +21,11 @@
     gtag('config', 'G-RJ9ZRC3PW3');
   </script>
 
-  <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="relative min-h-screen">
+<body class="relative min-h-screen flex items-center justify-center">
 
-  <!-- Background Video (fixed, behind everything) -->
+  <!-- Background Video (fixed behind content) -->
   <video
     id="bgVideo"
     class="bg-video"
@@ -37,54 +35,36 @@
     playsinline
     preload="auto"
     aria-hidden="true"
+    poster="images/fallback.jpg"  <!-- optional poster -->
   >
     <source src="videos/neck-mythic-mamba.webm" type="video/webm" />
-    <!-- Optional MP4 fallback for older Safari/iOS:
     <source src="videos/neck-mythic-mamba.mp4" type="video/mp4" />
-    -->
   </video>
 
-  <!-- Centering container -->
-  <main class="min-h-screen flex items-center justify-center">
-    <!-- Content Card -->
-    <div class="relative z-10 bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
-      <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
+  <!-- Info Card on top of video -->
+  <div class="relative z-10 bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
+    <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
 
-      <div>
-        <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
-        <p class="text-gray-600" id="tagline">DeGods</p>
-      </div>
-
-      <div class="space-y-4" id="links"><!-- injected by JS --></div>
+    <div>
+      <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
+      <p class="text-gray-600" id="tagline">DeGods</p>
     </div>
-  </main>
+
+    <div class="space-y-4" id="links"><!-- links injected by JS --></div>
+  </div>
 
   <!-- Contact Modal -->
   <div id="contactModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
     <div class="bg-white p-6 rounded-xl shadow-xl max-w-md w-full">
       <h2 class="text-xl font-bold mb-4">Contact Me</h2>
       <form id="contactForm" method="POST" action="https://formspree.io/f/xvgqygla">
-        <div class="mb-3">
-          <input type="text" name="first_name" placeholder="First Name" required
-            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div class="mb-3">
-          <input type="text" name="last_name" placeholder="Last Name" required
-            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div class="mb-3">
-          <input type="email" name="email" placeholder="Your Email" required
-            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
-        </div>
-        <div class="mb-4">
-          <textarea name="message" placeholder="Your Message" required rows="4"
-            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-        </div>
+        <div class="mb-3"><input type="text" name="first_name" placeholder="First Name" required class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
+        <div class="mb-3"><input type="text" name="last_name" placeholder="Last Name" required class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
+        <div class="mb-3"><input type="email" name="email" placeholder="Your Email" required class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" /></div>
+        <div class="mb-4"><textarea name="message" placeholder="Your Message" required rows="4" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea></div>
         <div class="flex justify-end space-x-2">
-          <button type="button" id="closeModal"
-            class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500">Cancel</button>
-          <button type="submit"
-            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Send</button>
+          <button type="button" id="closeModal" class="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500">Cancel</button>
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Send</button>
         </div>
       </form>
     </div>
@@ -105,7 +85,6 @@
       ]
     };
 
-    // Populate profile content
     document.getElementById("username").innerText = profile.username;
     document.getElementById("tagline").innerText = profile.tagline;
 
@@ -115,10 +94,7 @@
       a.href = link.url;
       a.target = "_blank";
       a.className = `relative flex items-center justify-center ${link.color} px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
-      a.innerHTML = `
-        <img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" />
-        <span>${link.name}</span>
-      `;
+      a.innerHTML = `<img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" /><span>${link.name}</span>`;
       container.appendChild(a);
     });
 
@@ -133,9 +109,9 @@
       document.getElementById("contactModal").classList.add("hidden");
     });
 
-    // Nudge some mobile browsers to autoplay
+    // Autoplay on mobile
     const v = document.getElementById('bgVideo');
-    if (v) { v.muted = true; v.play && v.play().catch(() => {}); }
+    if (v) { v.muted = true; v.play && v.play().catch(()=>{}); }
   </script>
 </body>
 </html>
