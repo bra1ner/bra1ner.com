@@ -18,9 +18,3 @@ html, body {
   pointer-events: none;   /* not clickable */
   background-color: black;
 }
-
-/* Keep all content above the video — EXCEPT the video itself */
-body > :not(.bg-video) {
-  position: relative;
-  z-index: 10;
-}
