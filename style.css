@@ -16,5 +16,5 @@ html, body {
   object-fit: cover;     /* makes video fill and crop nicely */
   z-index: -1;           /* behind all content */
   pointer-events: none;  /* unclickable */
-  background: black;
+  background: none;
 }
