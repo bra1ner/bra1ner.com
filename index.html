@@ -22,17 +22,30 @@
     gtag('config', 'G-RJ9ZRC3PW3');
   </script>
 
-  <!-- Preload background image -->
-  <link rel="preload" as="image" href="images/years.avif">
-  <link rel="preload" as="image" href="images/years.webp">
-  <link rel="preload" as="image" href="images/years.png">
-
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex items-center justify-center">
+<body class="relative min-h-screen flex items-center justify-center">
 
-  <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
+  <!-- Background Video -->
+  <video
+    id="bgVideo"
+    class="bg-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    aria-hidden="true"
+  >
+    <source src="neck-mythic-mamba.webm" type="video/webm" />
+    <!-- Optional MP4 fallback for older Safari/iOS:
+    <source src="neck-mythic-mamba.mp4" type="video/mp4" />
+    -->
+  </video>
+
+  <!-- Content Card -->
+  <div class="relative z-10 bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
     <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
 
     <div>
@@ -41,7 +54,7 @@
     </div>
 
     <div class="space-y-4" id="links">
-      <!-- Links will be inserted here by JavaScript -->
+      <!-- Links injected by JS -->
     </div>
   </div>
 
@@ -91,6 +104,7 @@
       ]
     };
 
+    // Insert content
     document.getElementById("username").innerText = profile.username;
     document.getElementById("tagline").innerText = profile.tagline;
 
@@ -100,12 +114,10 @@
       a.href = link.url;
       a.target = "_blank";
       a.className = `relative flex items-center justify-center ${link.color} px-4 py-3 rounded-xl font-medium hover:opacity-90 transition`;
-
       a.innerHTML = `
         <img src="${link.icon}" alt="" class="absolute left-4 w-5 h-5" />
         <span>${link.name}</span>
       `;
-
       container.appendChild(a);
     });
 
@@ -116,16 +128,13 @@
         document.getElementById("contactModal").classList.remove("hidden");
       }
     });
-
     document.getElementById("closeModal").addEventListener("click", function () {
       document.getElementById("contactModal").classList.add("hidden");
     });
-  </script>
-  
-  <script>
-    const img = new Image();
-    img.src = "images/years.webp";
-    img.onload = () => document.body.classList.add("loaded");
+
+    // Extra nudge for mobile autoplay
+    const v = document.getElementById('bgVideo');
+    if (v) { v.muted = true; v.play && v.play().catch(()=>{}); }
   </script>
 </body>
 </html>
