@@ -16,5 +16,5 @@ html, body {
   object-fit: cover;   /* high-res fill (crops, no letterbox) */
   z-index: -1;         /* behind all content */
   pointer-events: none;
-  background: black;
+  background: none;
 }
