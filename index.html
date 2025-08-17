@@ -22,12 +22,11 @@
     gtag('config', 'G-RJ9ZRC3PW3');
   </script>
 
-  <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex items-center justify-center relative">
+<body class="min-h-dvh flex items-center justify-center relative">
 
-  <!-- Background Video -->
+  <!-- Background Video (keep as the FIRST child) -->
   <video
     id="bgVideo"
     class="bg-video"
@@ -42,11 +41,10 @@
     <!-- Optional MP4 fallback if you add one later:
     <source src="neck-mythic-mamba.mp4" type="video/mp4" />
     -->
-    Your browser does not support the video tag.
   </video>
 
   <!-- Content Card -->
-  <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6 relative z-10">
+  <div class="bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
     <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
 
     <div>
@@ -54,9 +52,7 @@
       <p class="text-gray-600" id="tagline">DeGods</p>
     </div>
 
-    <div class="space-y-4" id="links">
-      <!-- Links will be inserted here by JavaScript -->
-    </div>
+    <div class="space-y-4" id="links"></div>
   </div>
 
   <!-- Contact Modal -->
@@ -105,6 +101,7 @@
       ]
     };
 
+    // Populate content
     document.getElementById("username").innerText = profile.username;
     document.getElementById("tagline").innerText = profile.tagline;
 
@@ -132,7 +129,7 @@
       document.getElementById("contactModal").classList.add("hidden");
     });
 
-    // Ensure autoplay on some mobile browsers
+    // Ensure autoplay
     const v = document.getElementById('bgVideo');
     if (v) { v.muted = true; v.play().catch(() => {}); }
   </script>
