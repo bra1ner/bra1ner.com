@@ -7,7 +7,7 @@
 
   <meta name="theme-color" content="#000000" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="none">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <title>BRA1NER</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -25,7 +25,7 @@
 </head>
 <body class="relative min-h-screen flex items-center justify-center">
 
-  <!-- Background Video (fixed behind content) -->
+  <!-- Fullscreen background video (fixed behind content) -->
   <video
     id="bgVideo"
     class="bg-video"
@@ -35,9 +35,12 @@
     playsinline
     preload="auto"
     aria-hidden="true"
-    //poster="images/fallback.jpg"  <!-- optional poster -->
+    poster="images/fallback.jpg"  <!-- optional still while buffering -->
   >
+    <!-- WebM first -->
     <source src="videos/neck-mythic-mamba.webm" type="video/webm" />
+    <!-- MP4 fallback for older Safari/iOS (add this file when possible) -->
+    <!-- <source src="videos/neck-mythic-mamba.mp4" type="video/mp4" /> -->
   </video>
 
   <!-- Info Card on top of video -->
@@ -49,7 +52,7 @@
       <p class="text-gray-600" id="tagline">DeGods</p>
     </div>
 
-    <div class="space-y-4" id="links"><!-- links injected by JS --></div>
+    <div class="space-y-4" id="links"></div>
   </div>
 
   <!-- Contact Modal -->
@@ -108,9 +111,14 @@
       document.getElementById("contactModal").classList.add("hidden");
     });
 
-    // Autoplay on mobile
+    // Autoplay + simple diagnostics
     const v = document.getElementById('bgVideo');
-    if (v) { v.muted = true; v.play && v.play().catch(()=>{}); }
+    if (v) {
+      v.muted = true;
+      v.play().catch(err => console.warn('Video play blocked:', err));
+      v.addEventListener('loadeddata', () => console.log('Video loaded'));
+      v.addEventListener('error', () => console.error('Video error: check path/type'));
+    }
   </script>
 </body>
 </html>
