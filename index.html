@@ -25,9 +25,9 @@
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="relative min-h-screen flex items-center justify-center">
+<body class="relative min-h-screen">
 
-  <!-- Background Video -->
+  <!-- Background Video (fixed, behind everything) -->
   <video
     id="bgVideo"
     class="bg-video"
@@ -38,25 +38,26 @@
     preload="auto"
     aria-hidden="true"
   >
-    <source src="neck-mythic-mamba.webm" type="video/webm" />
+    <source src="videos/neck-mythic-mamba.webm" type="video/webm" />
     <!-- Optional MP4 fallback for older Safari/iOS:
-    <source src="neck-mythic-mamba.mp4" type="video/mp4" />
+    <source src="videos/neck-mythic-mamba.mp4" type="video/mp4" />
     -->
   </video>
 
-  <!-- Content Card -->
-  <div class="relative z-10 bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
-    <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
+  <!-- Centering container -->
+  <main class="min-h-screen flex items-center justify-center">
+    <!-- Content Card -->
+    <div class="relative z-10 bg-white/20 backdrop-blur-md p-8 rounded-3xl shadow-xl w-full max-w-sm text-center space-y-6">
+      <img src="images/profile.jpg" alt="Profile Picture" class="w-24 h-24 mx-auto rounded-full shadow-lg object-cover" />
 
-    <div>
-      <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
-      <p class="text-gray-600" id="tagline">DeGods</p>
-    </div>
+      <div>
+        <h1 class="text-2xl font-bold tracking-wide" id="username">BRA1NER</h1>
+        <p class="text-gray-600" id="tagline">DeGods</p>
+      </div>
 
-    <div class="space-y-4" id="links">
-      <!-- Links injected by JS -->
+      <div class="space-y-4" id="links"><!-- injected by JS --></div>
     </div>
-  </div>
+  </main>
 
   <!-- Contact Modal -->
   <div id="contactModal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
@@ -104,7 +105,7 @@
       ]
     };
 
-    // Insert content
+    // Populate profile content
     document.getElementById("username").innerText = profile.username;
     document.getElementById("tagline").innerText = profile.tagline;
 
@@ -132,9 +133,9 @@
       document.getElementById("contactModal").classList.add("hidden");
     });
 
-    // Extra nudge for mobile autoplay
+    // Nudge some mobile browsers to autoplay
     const v = document.getElementById('bgVideo');
-    if (v) { v.muted = true; v.play && v.play().catch(()=>{}); }
+    if (v) { v.muted = true; v.play && v.play().catch(() => {}); }
   </script>
 </body>
 </html>
