@@ -18,6 +18,6 @@ body {
 
 /* Once main image is loaded, remove blur */
 body.loaded {
-  background-image: url('images/mamba.webp'), url('images/mamba.gif');
+  background-image: url('images/mamba.webp'), url('images/mamba.webm');
   filter: blur(0);
 }
